@@ -2,6 +2,7 @@ import express, { Router } from 'express';
 import {
   createUserHandler,
   forgotPasswordHandler,
+  getCurrentUserHandler,
   resetPasswordHandler,
   verfiyUserHandler,
 } from '../../controllers/user.controller';
@@ -33,5 +34,7 @@ router.post(
   validateSchema(resetPasswordSchema),
   resetPasswordHandler
 );
+
+router.get('/me', getCurrentUserHandler);
 
 export default router;

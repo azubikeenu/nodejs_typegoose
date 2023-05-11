@@ -21,3 +21,12 @@ export async function findUserById(id: string) {
 export async function findUserByEmail(query: FilterQuery<User>) {
   return UserModel.findOne(query);
 }
+
+export async function validatePassword(email: string, password: string) {
+  const user = await findUserByEmail({ email });
+
+  if (!user || !(await user.validatePassword(password))) {
+    return false;
+  }
+  return user;
+}

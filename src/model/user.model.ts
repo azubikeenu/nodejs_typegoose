@@ -13,6 +13,14 @@ import config from 'config';
 
 import bcrypt from 'bcrypt';
 
+export const privateFields = [
+  'verificationCode',
+  'password',
+  'passwordResetCode',
+  'verified',
+  '__v',
+];
+
 @pre<User>('save', async function () {
   if (!this.isModified('password')) {
     return;
@@ -20,6 +28,7 @@ import bcrypt from 'bcrypt';
   const salt = await bcrypt.genSalt(config.get<number>('saltWalkFactor'));
   const hash = await bcrypt.hash(this.password, salt);
   this.password = hash;
+  return;
 })
 @modelOptions({
   schemaOptions: {
@@ -40,7 +49,7 @@ export class User {
   @prop({ required: true })
   lastName: string;
 
-  @prop({ required: true, select: false })
+  @prop({ required: true })
   password: string;
 
   @prop({ required: true, default: () => uuid() })

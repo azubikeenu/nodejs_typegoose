@@ -12,4 +12,14 @@ export default {
   },
 
   web: '',
+
+  accessToken: {
+    publicKey: '',
+    privateKey: '',
+  },
+
+  refreshToken: {
+    publicKey: '',
+    privateKey: '',
+  },
 };

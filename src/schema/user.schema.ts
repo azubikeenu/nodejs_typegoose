@@ -57,6 +57,13 @@ export const resetPasswordSchema = object({
     path: ['passwordConfirmation'],
   }),
 });
+
+export const getCurrentUserSchema = object({
+  params: object({
+    id: string(),
+  }),
+});
+
 export type createUserInput = TypeOf<typeof createUserSchema>['body'];
 
 export type verifyUserInput = TypeOf<typeof verifyUserSchema>['params'];
@@ -64,3 +71,5 @@ export type verifyUserInput = TypeOf<typeof verifyUserSchema>['params'];
 export type forgotPasswordInput = TypeOf<typeof forgotPasswordSchema>['body'];
 
 export type resetPasswordInput = TypeOf<typeof resetPasswordSchema>;
+
+export type getCurrentUserInput = TypeOf<typeof getCurrentUserSchema>['params'];

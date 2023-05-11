@@ -6,11 +6,15 @@ import Logger from './utils/logger';
 
 import { router as routes } from './routes/v1';
 
+import { deserializeUser } from './middleware/deserializeUser';
+
 const port = config.get('port');
 
 const app: Express = express();
 
 app.use(express.json());
+
+app.use(deserializeUser);
 
 app.use('/api/v1/', routes);
 

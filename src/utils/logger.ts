@@ -1,5 +1,8 @@
 import logger from 'pino';
 import dayjs from 'dayjs';
+import config from 'config';
+
+const level = config.get<string>('logLevel');
 
 const Logger = logger({
   transport: {
@@ -8,6 +11,7 @@ const Logger = logger({
       colorize: true,
     },
   },
+  level,
   base: {
     pid: false,
   },

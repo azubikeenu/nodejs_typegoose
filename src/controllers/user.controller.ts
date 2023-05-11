@@ -149,3 +149,9 @@ export async function resetPasswordHandler(
     .status(200)
     .json({ success: true, message: 'Successfully updated user password' });
 }
+
+export async function getCurrentUserHandler(req: Request, res: Response) {
+  return res
+    .status(200)
+    .json({ success: true, data: { user: res.locals.user } });
+}
